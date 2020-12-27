@@ -10,6 +10,7 @@ import webpack from 'webpack-stream';
 import uglify from 'gulp-uglify';
 import named from 'vinyl-named';
 import browserSync from 'browser-sync';
+import zip from 'gulp-zip';
 
 const server = browserSync.create();
 
@@ -31,6 +32,21 @@ const paths = {
   other: {
     src: ['src/assets/**/*', '!src/assets/{img, js, scss}', '!src/assets/{img, js, scss}/**/*'],
     dest: 'dist/assets',
+  },
+  package: {
+    src: [
+      '**/*',
+      '!.vscode',
+      '!node_modules{,/**}', // This is the node_modules + subfolders of it as well
+      '!packaged{,/**}',
+      '!src{,/**}',
+      '!.babelrc',
+      '!.gitignore',
+      '!gulpfile.babel.js',
+      '!package.json',
+      '!package-lock.json',
+    ],
+    dest: 'packaged',
   },
 };
 
@@ -121,9 +137,17 @@ export const scripts = () => {
     .pipe(gulp.dest(paths.scripts.dest));
 };
 
+export const compressZip = () => {
+  return gulp
+    .src(paths.package.src)
+    .pipe(zip('dummy-theme.zip'))
+    .pipe(gulp.dest(paths.package.dest));
+};
+
 // This will pass multiple tasks and it'll run each task one after the other
 // gulp.parallel will run everything at the same time as in parallel mode
 export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), serve, watch);
 export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy));
+export const zipIt = gulp.series(build, compressZip);
 
 export default dev;

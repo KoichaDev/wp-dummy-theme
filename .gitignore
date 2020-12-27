@@ -63,20 +63,14 @@ wp-content/updraft/
 /*.html
 
 # ignore dependencies directories
-<<<<<<< HEAD
-/wp-content/themes/sicra/node_modules/
-/wp-content/themes/sicra/vendor/
-
-# ignore dotenv
-wp-content/themes/sicra/.env
-=======
 /wp-content/themes/dummy/node_modules/
 /wp-content/themes/dummy/vendor/
 
 # ignore dotenv
 wp-content/themes/dummy/.env
->>>>>>> gitignore
 
+# ignore production zip files of WordPress Theme
+wp-content/themes/dummy/packaged/*
 
 # ignore all files and folders in plugins folder except website specific files
 wp-content/plugins/*

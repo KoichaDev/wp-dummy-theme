@@ -6,6 +6,7 @@ import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
 import del from 'del';
+import webpack from 'webpack-stream';
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -17,6 +18,10 @@ const paths = {
   images: {
     src: 'src/assets/img/**/*.{jpg, jpeg, png, gif, svg}',
     dest: 'dist/assets/img',
+  },
+  scripts: {
+    src: 'src/assets/js/bundle.js',
+    dest: 'dist/assets/js',
   },
   other: {
     src: ['src/assets/**/*', '!src/assets/{img, js, scss}', '!src/assets/{img, js, scss}/**/*'],
@@ -60,6 +65,33 @@ export const watch = () => {
 
 export const copy = () => {
   return gulp.src(paths.other.src).pipe(gulp.dest(paths.other.dest));
+};
+
+export const scripts = () => {
+  return gulp
+    .src(paths.scripts.src)
+    .pipe(
+      webpack({
+        mode: PRODUCTION ? 'production' : 'development',
+        module: {
+          rules: [
+            {
+              test: /\.js$/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env'], //or ['babel-preset-env']
+                },
+              },
+            },
+          ],
+        },
+        output: {
+          filename: 'bundle.js',
+        },
+      })
+    )
+    .pipe(gulp.dest(paths.scripts.dest));
 };
 
 // This will pass multiple tasks and it'll run each task one after the other

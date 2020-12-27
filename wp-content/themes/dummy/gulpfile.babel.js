@@ -7,6 +7,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
 import del from 'del';
 import webpack from 'webpack-stream';
+import uglify from 'gulp-uglify';
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -92,6 +93,7 @@ export const scripts = () => {
         devtool: !PRODUCTION ? '#inline-source-map' : false,
       })
     )
+    .pipe(gulpif(PRODUCTION, uglify()))
     .pipe(gulp.dest(paths.scripts.dest));
 };
 

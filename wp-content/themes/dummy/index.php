@@ -19,6 +19,7 @@
             <?php _theme_name_read_more(); ?>
     <?php endwhile;?>
     <?php the_posts_pagination(); ?>
+    <?php do_action('_theme_name_after_pagination'); ?>
 <?php else : ?>
     <p><?php esc_html_e('Sorry, no posts matched your criteria.', '_theme_name'); ?> </p>
 <?php endif; ?>

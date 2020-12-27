@@ -32,4 +32,8 @@ export const styles = () => {
     .pipe(gulp.dest(paths.styles.dest));
 };
 
+export const watch = () => {
+  // 2nd param: which task to run when the file is changed
+  gulp.watch('src/assets/scss/**/*.scss', styles);
+};
 // export default hello;

@@ -1,6 +1,7 @@
 <?php 
     function dummy_theme_assets() {
         wp_enqueue_style('dummy-theme-stylesheet', get_template_directory_uri() . '/dist/assets/css/bundle.css', [], '1.0.0', 'all');
+        wp_enqueue_script('dummy-theme-scripts', get_template_directory_uri() . '/dist/assets/js/bundle.js', [], true);
     }
 
     function dummy_theme_admin_assets() {

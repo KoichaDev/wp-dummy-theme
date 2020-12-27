@@ -61,6 +61,7 @@ export const images = () => {
 export const watch = () => {
   // 2nd param: which task to run when the file is changed
   gulp.watch('src/assets/scss/**/*.scss', styles);
+  gulp.watch('src/assets/js/**/*.js', scripts);
   gulp.watch(paths.images.src, images);
   gulp.watch(paths.other.src, copy);
 };
@@ -101,7 +102,7 @@ export const scripts = () => {
 
 // This will pass multiple tasks and it'll run each task one after the other
 // gulp.parallel will run everything at the same time as in parallel mode
-export const dev = gulp.series(clean, gulp.parallel(styles, images, copy), watch);
-export const build = gulp.series(clean, gulp.parallel(styles, images, copy));
+export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), watch);
+export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy));
 
 export default dev;

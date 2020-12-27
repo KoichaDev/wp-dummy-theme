@@ -1,1 +1,1 @@
-console.log('this is admin js file');
+console.log('admin test file');

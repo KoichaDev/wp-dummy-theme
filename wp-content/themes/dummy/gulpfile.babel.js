@@ -17,6 +17,10 @@ const paths = {
     src: 'src/assets/img/**/*.{jpg, jpeg, png, gif, svg}',
     dest: 'dist/assets/img',
   },
+  other: {
+    src: ['src/assets/**/*', '!src/assets/{img, js, scss}', '!src/assets/{img, js, scss}/**/*'],
+    dest: 'dist/assets',
+  },
 };
 
 export const styles = () => {
@@ -48,4 +52,7 @@ export const watch = () => {
   // 2nd param: which task to run when the file is changed
   gulp.watch('src/assets/scss/**/*.scss', styles);
 };
-// export default hello;
+
+export const copy = () => {
+  return gulp.src(paths.other.src).pipe(gulp.dest(paths.other.dest));
+};

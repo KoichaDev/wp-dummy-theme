@@ -9,7 +9,7 @@ const PRODUCTION = yargs.argv.prod;
 
 export const styles = () => {
   return gulp
-    .src('src/assets/scss/bundle.scss')
+    .src(['src/assets/scss/bundle.scss', 'src/assets/scss/admin.scss'])
     .pipe(gulpif(!PRODUCTION, sourcemaps.init()))
     .pipe(sass().on('error', sass.logError))
     .pipe(

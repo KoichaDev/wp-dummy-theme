@@ -5,6 +5,7 @@ import cleanCSS from 'gulp-clean-css';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
+import del from 'del';
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -22,6 +23,8 @@ const paths = {
     dest: 'dist/assets',
   },
 };
+
+export const clean = () => del(['dist']);
 
 export const styles = () => {
   return gulp
@@ -51,8 +54,17 @@ export const images = () => {
 export const watch = () => {
   // 2nd param: which task to run when the file is changed
   gulp.watch('src/assets/scss/**/*.scss', styles);
+  gulp.watch(paths.images.src, images);
+  gulp.watch(paths.other.src, copy);
 };
 
 export const copy = () => {
   return gulp.src(paths.other.src).pipe(gulp.dest(paths.other.dest));
 };
+
+// This will pass multiple tasks and it'll run each task one after the other
+// gulp.parallel will run everything at the same time as in parallel mode
+export const dev = gulp.series(clean, gulp.parallel(styles, images, copy), watch);
+export const build = gulp.series(clean, gulp.parallel(styles, images, copy));
+
+export default dev;

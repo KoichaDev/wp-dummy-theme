@@ -11,7 +11,7 @@ export const styles = () => {
     .src('src/assets/scss/bundle.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(
-      gulpif(
+      gulpIf(
         // We want to run the production environment if it's true
         PRODUCTION,
         cleanCSS({

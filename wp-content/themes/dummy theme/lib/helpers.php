@@ -1,23 +1,38 @@
 <?php
     function dummy_theme_post_meta() {
+        // Translators: %s: Post Date
+        printf(esc_html('Posted on %s', 'Dummy Theme'), 
+            '<a href="' . esc_url(get_permalink()) . '">
+                <time datetime="' . esc_attr(get_the_date("c")) .'">' . esc_html(get_the_date()) .'</time> 
+            </a>'
+            );
+        // Translators: %s: Post Author
+        printf(
+            esc_html('By %s', 'Dummy Theme'),
+            '<a href="' . esc_url(get_author_posts_url(get_the_author_meta("ID"))) .'">
+                ' . esc_html(get_the_author()) .
+            '</a>'
+        );
+
     ?>  
-        <p>
-            Posted on 
-            <a href="<?php echo get_permalink(); ?>">
-                <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time> 
-            </a>
-            By 
-            <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
-                <?php echo get_the_author(); ?>
-            </a>
-        </p> 
     <?php
     }
 
     function dummy_theme_read_more() {
         ?>
-        <a href="<?php echo get_the_permalink(); ?>" title="<?php the_title_attribute(['echo' => false]); ?>">
-            Read More <span class="u-screen-reader-text">About <?php the_title(); ?></span>
+        <a href="<?php echo esc_url(get_the_permalink()); ?>" title="<?php the_title_attribute(['echo' => false]); ?>">
+         <?php // Translators: %s: Post Title ?>
+            <?php printf(
+                    wp_kses(
+                    __('Read More <span class="u-screen-reader-text">About %s </span>', 'Dummy Theme'),
+                    [
+                        'span' => [
+                            'class' => []
+                        ]
+                    ]
+                ),
+                get_the_title()
+            )?>
         </a>
         <?php
     }

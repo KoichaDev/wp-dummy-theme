@@ -11,6 +11,8 @@ import uglify from 'gulp-uglify';
 import named from 'vinyl-named';
 import browserSync from 'browser-sync';
 import zip from 'gulp-zip';
+import replace from 'gulp-replace';
+import info from './package.json';
 
 const server = browserSync.create();
 
@@ -140,7 +142,8 @@ export const scripts = () => {
 export const compressZip = () => {
   return gulp
     .src(paths.package.src)
-    .pipe(zip('dummy-theme.zip'))
+    .pipe(replace('_theme_name', info.name.replace('-', '_'))) // Reason we use underscore is due to PHP standard coding style format
+    .pipe(zip(`${info.name}.zip`))
     .pipe(gulp.dest(paths.package.dest));
 };
 

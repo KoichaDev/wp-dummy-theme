@@ -93,6 +93,9 @@ export const scripts = () => {
         output: {
           filename: '[name].js',
         },
+        externals: {
+          jquery: 'jQuery',
+        },
         devtool: !PRODUCTION ? '#inline-source-map' : false,
       })
     )

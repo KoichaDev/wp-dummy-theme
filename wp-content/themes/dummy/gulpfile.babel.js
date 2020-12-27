@@ -9,6 +9,9 @@ import del from 'del';
 import webpack from 'webpack-stream';
 import uglify from 'gulp-uglify';
 import named from 'vinyl-named';
+import browserSync from 'browser-sync';
+
+const server = browserSync.create();
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -31,6 +34,18 @@ const paths = {
   },
 };
 
+export const serve = (done) => {
+  server.init({
+    proxy: 'http://dummy-theme.local/', // Proxy should be exactly like the URL address from your local WP when loading booting up the site up
+  });
+  done();
+};
+
+export const reload = (done) => {
+  server.reload();
+  done();
+};
+
 export const clean = () => del(['dist']);
 
 export const styles = () => {
@@ -48,7 +63,8 @@ export const styles = () => {
       )
     )
     .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
-    .pipe(gulp.dest(paths.styles.dest));
+    .pipe(gulp.dest(paths.styles.dest))
+    .pipe(server.stream()); // This will inject the CSS in the browser document without even refreshing the page
 };
 
 export const images = () => {
@@ -60,10 +76,12 @@ export const images = () => {
 
 export const watch = () => {
   // 2nd param: which task to run when the file is changed
+  // gulp.watch('src/assets/scss/**/*.scss', gulp.series(styles, reload));
   gulp.watch('src/assets/scss/**/*.scss', styles);
-  gulp.watch('src/assets/js/**/*.js', scripts);
-  gulp.watch(paths.images.src, images);
-  gulp.watch(paths.other.src, copy);
+  gulp.watch('src/assets/js/**/*.js', gulp.series(scripts, reload));
+  gulp.watch('**/*.php', reload); // This is to reload all php files
+  gulp.watch(paths.images.src, gulp.series(images, reload));
+  gulp.watch(paths.other.src, gulp.series(copy, reload));
 };
 
 export const copy = () => {
@@ -105,7 +123,7 @@ export const scripts = () => {
 
 // This will pass multiple tasks and it'll run each task one after the other
 // gulp.parallel will run everything at the same time as in parallel mode
-export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), watch);
+export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), serve, watch);
 export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy));
 
 export default dev;

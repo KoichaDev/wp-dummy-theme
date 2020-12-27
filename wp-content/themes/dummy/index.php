@@ -21,7 +21,7 @@
     <?php the_posts_pagination(); ?>
     <?php do_action('_theme_name_after_pagination'); ?>
 <?php else : ?>
-    <p><?php esc_html_e('Sorry, no posts matched your criteria.', '_theme_name'); ?> </p>
+    <p><?php echo apply_filters('_theme_name_no_posts_text', esc_html__('Sorry, no posts matched your criteria.', '_theme_name')); ?> </p>
 <?php endif; ?>
 
 <?php get_footer(); ?>

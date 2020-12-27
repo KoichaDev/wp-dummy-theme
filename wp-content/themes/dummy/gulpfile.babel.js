@@ -4,6 +4,7 @@ import sass from 'gulp-sass';
 import cleanCSS from 'gulp-clean-css';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
+import imagemin from 'gulp-imagemin';
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -11,6 +12,10 @@ const paths = {
   styles: {
     src: ['src/assets/scss/bundle.scss', 'src/assets/scss/admin.scss'],
     dest: 'dist/assets/css',
+  },
+  images: {
+    src: 'src/assets/img/**/*.{jpg, jpeg, png, gif, svg}',
+    dest: 'dist/assets/img',
   },
 };
 
@@ -30,6 +35,13 @@ export const styles = () => {
     )
     .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
     .pipe(gulp.dest(paths.styles.dest));
+};
+
+export const images = () => {
+  return gulp
+    .src(paths.images.src)
+    .pipe(gulpif(PRODUCTION, imagemin()))
+    .pipe(gulp.dest(paths.images.dest));
 };
 
 export const watch = () => {

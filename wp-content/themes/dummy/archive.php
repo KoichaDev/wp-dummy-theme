@@ -16,7 +16,7 @@
             @medium"
         >
             <main role="main">
-                <?php get_template_part( 'loop'); ?>
+                <?php get_template_part( 'loop', 'archive'); ?>
             </main>
         </div>
         <?php if(is_active_sidebar('primary-sidebar')) : ?>

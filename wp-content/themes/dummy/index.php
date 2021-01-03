@@ -8,7 +8,8 @@
             @medium"
         >
             <main role="main">
-                <?php get_template_part( 'loop'); ?>
+                <!-- 1st and 2nd param will give like loop-index.php. If loop-index.php is not found, then it will fallback to loop.php -->
+                <?php get_template_part( 'loop', 'index'); ?>
             </main>
         </div>
         <?php if(is_active_sidebar('primary-sidebar')) : ?>

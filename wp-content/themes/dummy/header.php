@@ -15,6 +15,7 @@
                         <?php esc_html__(bloginfo('name')); ?>
                     </a>
                 </div>
+                <?php get_search_form(true); ?>
             </div>
         </div>
     </header>

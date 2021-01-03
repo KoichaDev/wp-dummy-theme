@@ -3,8 +3,14 @@
             $footer_layout = '3,3,3,3';
             $columns = explode(',', $footer_layout);
             $footer_background = 'dark';
+            $widget_active = false;
+            foreach ($columns as $i => $column) {
+                if(is_active_sidebar('footer-sidebar-' . ($i + 1))) {
+                    $widget_active = true;
+                }
+            }
         ?>
-        
+        <?php if($widget_active) : ?>
         <div class="c-footer c-footer--<?php $footer_background; ?>">
             <div class="o-container">
                 <div class="o-row">
@@ -21,6 +27,7 @@
                 </div>
             </div>
         </div>
+        <?php endif; ?>
         <div class="c-site-info c-site-info--<?php echo $footer_background; ?>">
         <div class="o-container">
             <div class="o-row">

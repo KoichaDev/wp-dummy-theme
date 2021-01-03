@@ -20,7 +20,10 @@
 
     function _theme_name_read_more() {
         ?>
-        <a href="<?php echo esc_url(get_the_permalink()); ?>" title="<?php the_title_attribute(['echo' => false]); ?>">
+        <a 
+            href="<?php echo esc_url(get_the_permalink()); ?>" 
+            title="<?php the_title_attribute(['echo' => false]); ?>" 
+            class="c-post__readmore">
          <?php // Translators: %s: Post Title ?>
             <?php printf(
                     wp_kses(

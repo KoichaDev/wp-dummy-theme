@@ -2,7 +2,11 @@
 
 <div class="o-container u-margin-bottom-40">
     <div class="o-row">
-        <div class="o-row__column o-row__column--span-12 o-row__column--span-8@medium">
+        <div class="
+            o-row__column 
+            o-row__column--span-<?php echo is_active_sidebar('primary-sidebar') ? '8' : '12'; ?> 
+            @medium"
+        >
             <main role="main">
                   <?php if(have_posts()) : 
                     while(have_posts()) : the_post();  ?>
@@ -31,9 +35,11 @@
                 <?php endif; ?>
             </main>
         </div>
-        <div class="o-row__column o-row__column--span-12 o-row__column--span-4@medium">
-            <?php get_sidebar(); ?>
-        </div>
+        <?php if(is_active_sidebar('primary-sidebar')) : ?>
+            <div class="o-row__column o-row__column--span-12 o-row__column--span-4@medium">
+                <?php get_sidebar(); ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 <?php get_footer(); ?>

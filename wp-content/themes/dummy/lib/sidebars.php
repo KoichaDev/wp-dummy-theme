@@ -1,5 +1,5 @@
 <?php 
-
+// This is for the admin dashboard where we have a widget to display what we want to add on the sidebar widget
 function _theme_name_sidebar_widgets() {
     register_sidebar([
         'id' => 'primary-sidebar',

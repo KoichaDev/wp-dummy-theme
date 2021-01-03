@@ -1,22 +1,22 @@
 <?php
-    function _theme_name_post_meta() {
-        // Translators: %s: Post Date
-        printf(esc_html('Posted on %s', '_theme_name'), 
-            '<a href="' . esc_url(get_permalink()) . '">
-                <time datetime="' . esc_attr(get_the_date("c")) .'">' . esc_html(get_the_date()) .'</time> 
-            </a>'
+    if(!function_exists('_theme_name_post_meta')) {
+        function _theme_name_post_meta() {
+            // Translators: %s: Post Date
+            printf(esc_html('Posted on %s', '_theme_name'), 
+                '<a href="' . esc_url(get_permalink()) . '">
+                    <time datetime="' . esc_attr(get_the_date("c")) .'">' . esc_html(get_the_date()) .'</time> 
+                </a>'
+                );
+            // Translators: %s: Post Author
+            printf(
+                esc_html('By %s', '_theme_name'),
+                '<a href="' . esc_url(get_author_posts_url(get_the_author_meta("ID"))) .'">
+                    ' . esc_html(get_the_author()) .
+                '</a>'
             );
-        // Translators: %s: Post Author
-        printf(
-            esc_html('By %s', '_theme_name'),
-            '<a href="' . esc_url(get_author_posts_url(get_the_author_meta("ID"))) .'">
-                ' . esc_html(get_the_author()) .
-            '</a>'
-        );
-
-    ?>  
-    <?php
+        }
     }
+    
 
     function _theme_name_read_more() {
         ?>

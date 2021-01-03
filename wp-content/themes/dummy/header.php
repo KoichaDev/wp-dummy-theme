@@ -6,4 +6,17 @@
         <?php wp_head(); ?>
     </head>
     <!-- Useful body_class() + mandatory for theme rejection-->
-<body <?php body_class(); ?>>
+    <body <?php body_class(); ?>>
+    <header role="banner" class="u-margin-bottom-40">
+        <div class="c-header">
+            <div class="o-container u-flex u-align-justify u-align-middle">
+                <div class="c-header__logo">
+                    <a href="#" class="c-header__blogname" href="<?php echo esc_url(home_url('/')); ?>">
+                        <?php esc_html__(bloginfo('name')); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="content">

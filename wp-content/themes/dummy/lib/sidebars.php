@@ -13,4 +13,29 @@ function _theme_name_sidebar_widgets() {
     ]);
 }
 
+// This will display how many footer we want on the column of the layout
+$footer_layout = '3,3,3,3';
+$columns = explode(',', $footer_layout);
+$footer_background = 'dark';
+$widgets_theme = '';
+
+if($footer_background === 'light') {
+    $widgets_theme = 'c-footer-widget--dark';
+} else {
+    $widgets_theme = 'c-footer-widget--dark';
+}
+
+foreach ($columns as $i => $column) {
+    register_sidebar([
+        'id' => 'footer-sidebar-' . ($i + 1),
+        'name' => sprintf(esc_html__('Footer Widghets Column %s', '_theme_name'), $i + 1),
+        'description' => esc_html__('Footer widgets', '_theme_name'),
+        // %1$s WP will create automatically an ID and %2$s WP will create a placeholder
+        'before_widget' => '<section id="%1$s" class="c-footer-widget ' . $widgets_theme .'%2$s">', // This will be any HTMl print before the widget
+        'after_widget' => '</section>',
+        'before_title' => '<h5>',
+        'after_title' => '</h5>'
+    ]);
+}
+
 add_action('widgets_init', '_theme_name_sidebar_widgets');

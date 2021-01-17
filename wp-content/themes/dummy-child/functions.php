@@ -16,4 +16,11 @@
         echo 'uoppppp';
     }
 
+    function filter_title($title) {
+        return 'Filtered ' . $title;
+    }
+
+    // We can use it for adding "filter" on the navbar for example
+    // add_action('the_title', 'filter_title');
+
     add_action('wp_enqueue_scripts', 'dummy_theme_child_scripts');

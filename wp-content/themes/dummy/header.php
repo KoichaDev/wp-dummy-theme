@@ -18,5 +18,18 @@
                 <?php get_search_form(true); ?>
             </div>
         </div>
+        <div class="c-navigation">
+            <div class="o-container">
+                <nav 
+                    class="header-nav" 
+                    role="navigation" 
+                    aria-label="<?php esc_html__('Main Navigation', '_theme_name') ?>"
+                >
+                <?php wp_nav_menu([
+                    'theme_location' => 'main-menu' // This is the most important one
+                ]); ?>
+                </nav>
+            </div>
+        </div>
     </header>
     <div id="content">

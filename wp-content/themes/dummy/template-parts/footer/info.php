@@ -1,5 +1,5 @@
 <?php 
-    $footer_background = 'dark'; 
+    $footer_background = _theme_name_sanitize_footer_background(get_theme_mod('_theme_name_footer_background', 'dark'));
     // 2nd param is the default value will be added on the site
     $footer_customization_site_info = get_theme_mod( '_theme_name_site_info', '')
 ?>

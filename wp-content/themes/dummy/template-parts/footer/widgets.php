@@ -2,7 +2,7 @@
     // This will display how many footer we want on the column of the layout
     $footer_layout = '3,3,3,3';
     $columns = explode(',', $footer_layout);
-    $GLOBALS['footer_background'] = 'dark';
+    $footer_background = _theme_name_sanitize_footer_background(get_theme_mod('_theme_name_footer_background', 'dark'));
     $widget_active = false;
     foreach ($columns as $i => $column) {
         if(is_active_sidebar('footer-sidebar-' . ($i + 1))) {

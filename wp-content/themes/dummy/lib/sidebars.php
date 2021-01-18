@@ -16,7 +16,8 @@ function _theme_name_sidebar_widgets() {
 // This will display how many footer we want on the column of the layout
 $footer_layout = '3,3,3,3';
 $columns = explode(',', $footer_layout);
-$footer_background = 'dark';
+// 3rd param: we add it as default value
+$footer_background = _theme_name_sanitize_footer_background(get_theme_mod('_theme_name_footer_background', 'dark'));
 $widgets_theme = '';
 
 if($footer_background === 'light') {

@@ -19,6 +19,15 @@
             }
         ]);
 
+        $wp_customize -> selective_refresh -> add_partial('_theme_name_footer_partial', [
+            // 'settings' => [] // You put DOM ID of the settings here and if we have ID from the add_partial. We don't need to use 'setting' key
+            'selectors' => '.c-site-info', 
+            'container_inclusive' => true, // partial will replace the whole .c-site-info, and we do not put content inside of it
+            'render_callback' => function() {
+                get_template_part('template-parts/footer/info');
+            }
+        ]);
+
         $wp_customize -> add_section('_theme_name_footer_options', [
             'title' => esc_html('Footer Options', '_theme_name'),
             'description' => esc_html('You can change footer options here', '_theme_name'),

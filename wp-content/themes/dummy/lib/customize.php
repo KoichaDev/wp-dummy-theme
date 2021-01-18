@@ -10,6 +10,15 @@
 
         $wp_customize -> get_setting('blogname') -> transport = 'postMessage';
 
+        $wp_customize -> selective_refresh -> add_partial('blogname', [
+            // 'settings' => [] // You put DOM ID of the settings here and if we have ID from the add_partial. We don't need to use 'setting' key
+            'selectors' => '.c-header__blogname', 
+            'container_inclusive' => false,
+            'render_callback' => function() {
+                bloginfo('name');
+            }
+        ]);
+
         $wp_customize -> add_section('_theme_name_footer_options', [
             'title' => esc_html('Footer Options', '_theme_name'),
             'description' => esc_html('You can change footer options here', '_theme_name'),

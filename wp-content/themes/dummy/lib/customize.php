@@ -29,6 +29,7 @@
 
         $wp_customize -> add_setting('_theme_name_accent_colour', [
             'default'           => '#20dda',
+            'transport'         => 'postMessage',
             'sanitize_callback' => 'sanitize_hex_color'
         ]);
         

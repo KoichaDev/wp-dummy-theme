@@ -4,4 +4,17 @@
         a {
             color: {$accent_colour}
         }
+        :focus {
+            outline-color: {$accent_colour}
+        }
+
+        .c-post-sticky { 
+            border-left-color: {$accent_colour}
+        }
+
+        button, input[type=submit],
+        .header-nav .menu > .menu-item:not(.mega) 
+        .sub-menu .menu-item a {
+            background: {$accent_colour}
+        }
     "; 

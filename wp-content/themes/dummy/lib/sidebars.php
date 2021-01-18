@@ -14,7 +14,9 @@ function _theme_name_sidebar_widgets() {
 }
 
 // This will display how many footer we want on the column of the layout
-$footer_layout = '3,3,3,3';
+// 3rd param is default value we define
+$footer_layout = sanitize_text_field(get_theme_mod('_theme_name_footer_layout', '3,3,3,3'));
+$footer_layout = preg_replace('/\s+/', '', $footer_layout); // This will remove any spaces of '3,3,3,3'
 $columns = explode(',', $footer_layout);
 // 3rd param: we add it as default value
 $footer_background = _theme_name_sanitize_footer_background(get_theme_mod('_theme_name_footer_background', 'dark'));

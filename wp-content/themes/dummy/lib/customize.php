@@ -21,7 +21,8 @@
 
         $wp_customize -> selective_refresh -> add_partial('_theme_name_footer_partial', [
             'settings' => [ // You put DOM ID of the settings here and if we have ID from the add_partial. We don't need to use 'setting' key
-                '_theme_name_footer_background'
+                '_theme_name_footer_background',
+                '_theme_name_footer_layout'
             ], 
             'selectors' => '#footer', 
             'container_inclusive' => false, // partial will replace the whole .c-site-info, and we do not put content inside of it
@@ -66,6 +67,28 @@
             'section' => '_theme_name_footer_options'
         ]);
 
+        $wp_customize -> add_setting('_theme_name_footer_layout', [
+            'default'           => '3,3,3,3',
+            'transport'         => 'postMessage',
+            'sanitize_callback' => 'sanitize_text_field',
+            'validate_callback' => '_theme_name_valider_footer_layout',// This will happen before saving to the WP database
+        ]);
+
+        $wp_customize -> add_control('_theme_name_footer_layout', [
+            'type' => 'text', // This is the most important one
+            'label' => esc_html__('Footer Layout', '_theme_name' ),
+            'section' => '_theme_name_footer_options' 
+        ]);
+    }
+
+    function _theme_name_valider_footer_layout($validity, $value) {
+        // Checking string matches number, number, number and number and should not be greater than 12, which is maximum of the grid system
+        $numbers = '/^([1-9]|1[012])(,([1-9]|1[012]))*$/';
+        if(!preg_match($numbers, $value)) {
+            // This will display an error message on the WP customize 
+            $validity -> add('invalid_footer_layout', esc_html__('Footer layout is invalid!', '_theme_name'));
+        }
+        return $validity;
     }
 
     function _theme_name_sanitize_footer_background($input) {

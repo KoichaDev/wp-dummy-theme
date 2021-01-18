@@ -16,7 +16,8 @@
 
         $wp_customize -> add_setting('_theme_name_site_info', [
             'default' => '',
-            'sanitize_callback' => '_theme_name_sanitize_site_info'
+            'sanitize_callback' => '_theme_name_sanitize_site_info',
+            'transport' => 'postMessage',
         ]); 
 
         // https://developer.wordpress.org/themes/customize-api/customizer-objects/#sections

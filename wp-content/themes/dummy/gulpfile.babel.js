@@ -28,7 +28,7 @@ const paths = {
     dest: 'dist/assets/img',
   },
   scripts: {
-    src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js'],
+    src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js', 'src/assets/js/customize-preview.js'],
     dest: 'dist/assets/js',
   },
   other: {
@@ -86,10 +86,7 @@ export const styles = () => {
 };
 
 export const images = () => {
-  return gulp
-    .src(paths.images.src)
-    .pipe(gulpif(PRODUCTION, imagemin()))
-    .pipe(gulp.dest(paths.images.dest));
+  return gulp.src(paths.images.src).pipe(gulpif(PRODUCTION, imagemin())).pipe(gulp.dest(paths.images.dest));
 };
 
 export const watch = () => {

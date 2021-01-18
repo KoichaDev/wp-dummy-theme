@@ -19,6 +19,28 @@
             }
         ]);
 
+        /************************ GENERAL SETTINGS ************************/
+
+        $wp_customize -> add_section('_theme_name_general_options', [
+            'title'       => esc_html('General Options', '_theme_name'),
+            'description' => esc_html('You can change general options here', '_theme_name'),
+            'priority'    => 30
+        ]);
+
+        $wp_customize -> add_setting('_theme_name_accent_colour', [
+            'default'           => '#20dda',
+            'sanitize_callback' => 'sanitize_hex_color'
+        ]);
+        
+        // https://developer.wordpress.org/themes/customize-api/customizer-objects/#core-custom-controls
+
+        $wp_customize -> add_control( new WP_Customize_Color_Control( $wp_customize, '_theme_name_accent_colour', array(
+        'label' => __( 'Accent Color', '_theme_name' ),
+        'section' => '_theme_name_general_options',
+        ) ) );
+
+        /************************ FOOTER SETTINGS ************************/
+
         $wp_customize -> selective_refresh -> add_partial('_theme_name_footer_partial', [
             'settings' => [ // You put DOM ID of the settings here and if we have ID from the add_partial. We don't need to use 'setting' key
                 '_theme_name_footer_background',

@@ -14,4 +14,5 @@
         <?php the_excerpt(); ?>
     </div>
         <?php _theme_name_read_more(); ?>
+        <?php echo _theme_name_delete_post(); ?>
 </article>

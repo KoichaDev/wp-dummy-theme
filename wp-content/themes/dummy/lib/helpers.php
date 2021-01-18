@@ -39,3 +39,11 @@
         </a>
         <?php
     }
+
+    function _theme_name_delete_post() {
+        $url = add_query_arg([
+            'action'    => '_theme_name_delete_post',
+            'post'      => get_the_ID()
+        ], home_url() );
+        return "<a href='" . esc_url($url) . "'>" . esc_html__('Delete Post', '_theme_name') . "</a>";
+    }

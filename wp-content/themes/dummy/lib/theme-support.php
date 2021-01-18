@@ -12,6 +12,12 @@
         ]);
         // This will act like selective refresh. it only refresh once, but after that, it won't refresh again when choosing different widgets
         add_theme_support('customize-selective-refresh-widgets');
+        add_theme_support('custom-logo', [
+            'height'      => 200,
+            'width'       => 600,
+            'flex-height' => true,
+            'flex-width'  => true
+        ]);
     }
 
     // after_setup_theme action is to add features that are not supported by WP default

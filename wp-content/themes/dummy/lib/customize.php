@@ -16,7 +16,7 @@
 
         $wp_customize -> add_setting('_theme_name_site_info', [
             'default' => '',
-            'sanitize_callback' => 'sanitize_text_field'
+            'sanitize_callback' => '_theme_name_sanitize_site_info'
         ]); 
 
         // https://developer.wordpress.org/themes/customize-api/customizer-objects/#sections
@@ -25,6 +25,17 @@
             'label' => esc_html__('Site info', '_theme_name' ),
             'section' => '_theme_name_footer_options' 
         ]);
+    }
+
+
+    function _theme_name_sanitize_site_info( $input ) {
+        $allowed_once = ['a' => [
+            'href' => [],
+            'title' => [], 
+        ]];
+        // This function takes a string input and an array of allowed HTML. 
+        // It removes any HTML except for that allowed once
+        return wp_kses($input, $allowed_once);
     }
 
     add_action('customize_register', '_theme_name_customize_register');

@@ -9,7 +9,11 @@
         <div class="o-row">
             <div class="o-row__column o-row__column--span12 c-site-info__text">
                 <?php if($footer_customization_site_info) :
-                echo esc_html( $footer_customization_site_info );
+                $allowed_once = ['a' => [
+                    'href' => [],
+                    'title' => [], 
+                ]];
+                echo wp_kses( $footer_customization_site_info, $allowed_once );
                 else : ?>
                     <p>All Right Reserved</p>
                 <?php endif; ?>

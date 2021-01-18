@@ -22,6 +22,12 @@
             '1.0.0', 
             true
         );
+
+        include(get_template_directory() . '/lib/inline-css.php');
+
+        // Handler for JS file that we want PHP variable to be available. This will be used as internal serving
+        // JavaScript as an object
+        wp_localize_script('_theme_name-customize-preview', '_theme_name', ['inline-css' => $inline_styles_selectors]);
     }
 
     add_action('wp_enqueue_scripts', '_theme_name_assets');

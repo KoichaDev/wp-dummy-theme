@@ -11,26 +11,17 @@ wp.customize('blogname', (value) => {
 // transport preview for the color accent of WP Customize
 wp.customize('_theme_name_accent_colour', (value) => {
   value.bind((to) => {
-    $('#_theme_name-stylesheet-inline-css').html(
-      `
-      a {
-        color: ${to}
+    let inlineCSS = ``;
+    let inlineCSSObj = _theme_name['inline-css'];
+    for (let selector in _theme_name['inline-css']) {
+      inlineCSS += `${selector} {`;
+      for (let prop in inlineCSSObj[selector]) {
+        let value = inlineCSSObj[selector][prop];
+        inlineCSS += `${prop}: ${wp.customize(value).get()}`;
       }
-      :focus {
-        outline-color: ${to}
-      }
-
-      .c-post-sticky { 
-        border-left-color: ${to}
-      }
-
-      button, input[type=submit],
-      .header-nav .menu > .menu-item:not(.mega) 
-      .sub-menu .menu-item a {
-            background: ${to}
-      }
-      `
-    );
+      inlineCSS += `}`;
+    }
+    $('#_theme_name-stylesheet-inline-css').html(inlineCSS);
   });
 });
 

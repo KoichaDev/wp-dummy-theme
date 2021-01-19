@@ -43,10 +43,15 @@
     function _theme_name_delete_post() {
         $url = add_query_arg([
             'action'    => '_theme_name_delete_post',
-            'post'      => get_the_ID()
+            'post'      => get_the_ID(),
+            // nonce will create hash and the hash will contain information like current user ID and the current user session token
+            // Session token is generated when logging into the WP. It's an unique token. If you log in with the same account
+            // but in another browser. The token will be different. It also contains information about the time that this nonce
+            // was generated as well. It also contains that you specified by on the action of the wp_create_nonce('action');
+            'nonce'     => wp_create_nonce( '_theme_name_delete_post_' . get_the_ID() ), // the string can be arbiritary name
         ], home_url() );
 
-        if(!current_user_can('delete_post', get_the_ID())) {
+        if(current_user_can('delete_post', get_the_ID())) {
             return "<a href='" . esc_url($url) . "'>" . esc_html__('Delete Post', '_theme_name') . "</a>";
         }
 

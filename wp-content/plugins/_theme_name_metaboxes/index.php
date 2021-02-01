@@ -15,6 +15,9 @@
 
 // Prevent direct access to your index.php file
 // Read More: https://wordpress.stackexchange.com/questions/108418/what-are-the-differences-between-wpinc-and-abspath
-if(!define('WPINC')) {
+if ( ! defined( 'ABSPATH' ) ) {
     die;
 }
+
+include_once('includes/enqueue-assets.php');
+include_once('includes/metaboxes.php');

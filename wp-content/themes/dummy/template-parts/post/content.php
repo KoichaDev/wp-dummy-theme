@@ -15,4 +15,6 @@
     </div>
         <?php _theme_name_read_more(); ?>
         <?php echo _theme_name_delete_post(); ?>
+        <?php echo get_the_ID(); ?>
+        <?php var_dump(get_post_meta( 1903 , 'price' )); ?>
 </article>

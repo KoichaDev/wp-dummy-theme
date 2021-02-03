@@ -6,5 +6,6 @@
     require_once('lib/theme-support.php');
     require_once('lib/navigation.php');
     require_once('lib/delete_post.php');
+    require_once('lib/include-plugins.php');
 
 

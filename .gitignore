@@ -71,6 +71,10 @@ wp-content/themes/dummy/.env
 
 # ignore production zip files of WordPress Theme
 wp-content/themes/dummy/packaged/*
+wp-content/themes/dummy/dist
+wp-content/themes/dummy/dist/*
+
+
 
 # ignore all files and folders in plugins folder except website specific files
 wp-content/plugins/*

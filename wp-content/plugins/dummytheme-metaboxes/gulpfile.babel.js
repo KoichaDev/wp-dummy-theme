@@ -75,7 +75,6 @@ export const images = () => {
 
 export const watch = () => {
   // 2nd param: which task to run when the file is changed
-  // gulp.watch('src/assets/scss/**/*.scss', gulp.series(styles, reload));
   gulp.watch('src/assets/scss/**/*.scss', styles);
   gulp.watch('src/assets/js/**/*.js', scripts);
   gulp.watch(paths.images.src, images);
@@ -121,9 +120,9 @@ export const scripts = () => {
 
 export const compressZip = () => {
   return gulp
-    .src(paths.package.src)
-    .pipe(replace('_plugin_name', info.name.replace('-', '_'))) // Reason we use underscore is due to PHP standard coding style format
-    .pipe(replace('_theme_name', info.theme.replace('-', '_'))) // Reason we use underscore is due to PHP standard coding style format
+    .src(paths.package.src, { base: '../' }) // ../ is because we have to go one up level of the folder to get_theme_name_metaboxes
+    .pipe(replace('_pluginname', info.name)) // Reason we use underscore is due to PHP standard coding style format
+    .pipe(replace('_themename', info.theme)) // Reason we use underscore is due to PHP standard coding style format
     .pipe(zip(`${info.theme}-${info.name}.zip`))
     .pipe(gulp.dest(paths.package.dest));
 };

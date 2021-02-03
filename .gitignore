@@ -74,8 +74,8 @@ wp-content/themes/dummy/packaged/*
 
 # ignore all files and folders in plugins folder except website specific files
 wp-content/plugins/*
-wp-content/plugins/_theme_name_metaboxes/node_modules
-!wp-content/plugins/_theme_name_metaboxes
+wp-content/plugins/dummytheme-metaboxes/node_modules
+!wp-content/plugins/dummytheme-metaboxes
 
 # ignore log files and databases
 *.log

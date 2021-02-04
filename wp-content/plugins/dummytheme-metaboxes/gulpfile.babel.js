@@ -70,7 +70,10 @@ export const styles = () => {
 };
 
 export const images = () => {
-  return gulp.src(paths.images.src).pipe(gulpif(PRODUCTION, imagemin())).pipe(gulp.dest(paths.images.dest));
+  return gulp
+    .src(paths.images.src)
+    .pipe(gulpif(PRODUCTION, imagemin()))
+    .pipe(gulp.dest(paths.images.dest));
 };
 
 export const watch = () => {

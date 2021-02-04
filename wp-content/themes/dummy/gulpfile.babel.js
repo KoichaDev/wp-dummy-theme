@@ -28,8 +28,16 @@ const paths = {
     dest: 'dist/assets/img',
   },
   scripts: {
-    src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js', 'src/assets/js/customize-preview.js'],
+    src: [
+      'src/assets/js/bundle.js',
+      'src/assets/js/admin.js',
+      'src/assets/js/customize-preview.js',
+    ],
     dest: 'dist/assets/js',
+  },
+  plugins: {
+    src: ['../../plugins/dummytheme-metaboxes/packaged/*'],
+    dest: ['lib/plugins'],
   },
   other: {
     src: ['src/assets/**/*', '!src/assets/{img, js, scss}', '!src/assets/{img, js, scss}/**/*'],
@@ -86,7 +94,10 @@ export const styles = () => {
 };
 
 export const images = () => {
-  return gulp.src(paths.images.src).pipe(gulpif(PRODUCTION, imagemin())).pipe(gulp.dest(paths.images.dest));
+  return gulp
+    .src(paths.images.src)
+    .pipe(gulpif(PRODUCTION, imagemin()))
+    .pipe(gulp.dest(paths.images.dest));
 };
 
 export const watch = () => {
@@ -101,6 +112,10 @@ export const watch = () => {
 
 export const copy = () => {
   return gulp.src(paths.other.src).pipe(gulp.dest(paths.other.dest));
+};
+
+export const copyPlugins = () => {
+  return gulp.src(paths.plugins.src).pipe(gulp.dest(paths.plugins.dest));
 };
 
 export const scripts = () => {
@@ -147,7 +162,7 @@ export const compressZip = () => {
 // This will pass multiple tasks and it'll run each task one after the other
 // gulp.parallel will run everything at the same time as in parallel mode
 export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), serve, watch);
-export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy));
+export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), copyPlugins);
 export const zipIt = gulp.series(build, compressZip);
 
 export default dev;

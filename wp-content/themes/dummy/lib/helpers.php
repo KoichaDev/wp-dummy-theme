@@ -54,6 +54,13 @@
         if(current_user_can('delete_post', get_the_ID())) {
             return "<a href='" . esc_url($url) . "'>" . esc_html__('Delete Post', '_theme_name') . "</a>";
         }
+    }
 
-
+    function _theme_name_meta($id, $key, $default = true ) {
+        $value = get_post_meta( $id, $key , $default);
+        
+        if(!$value && $default) {
+            return $default;
+        }
+        return $value;
     }

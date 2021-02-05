@@ -19,6 +19,36 @@
             }
         ]);
 
+        /************************ SINGLE SETTINGS ************************/
+
+        $wp_customize -> add_section('_theme_name_single_blog_options', [
+            'title'       => esc_html('Single Blog Options', '_theme_name'),
+            'description' => esc_html('You can change single options here', '_theme_name'),
+            'active_callback'    => '_theme_name_show_single_blog_section'
+        ]); 
+
+        $wp_customize -> add_setting( '_theme_name_display_author_info', [
+            'default'           => true,
+            'transport'         => 'postMessage',
+            'sanitize_callback' => '_theme_name_sanitize_checkbox',
+        ]);
+
+        $wp_customize -> add_control('_theme_name_display_author_info', [
+            'type'          => 'checkbox',
+            'label'         => esc_html__( 'Show Author Info', '_theme_name'),
+            'section'       => '_theme_name_single_blog_options'
+        ]);
+
+        function _theme_name_show_single_blog_section() {
+            global $post;
+            return is_single() && $post -> post_type === 'post';
+        }
+
+        function _theme_name_sanitize_checkbox( $checked ) {
+            return (isset($checked) && $checked === true    ) ? true : false;
+
+        }
+
         /************************ GENERAL SETTINGS ************************/
 
         $wp_customize -> add_section('_theme_name_general_options', [

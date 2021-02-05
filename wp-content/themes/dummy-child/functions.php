@@ -12,9 +12,9 @@
         );
     }
 
-    function _theme_name_post_meta() {
-        echo 'uoppppp';
-    }
+    // function _theme_name_post_meta() {
+    //     echo 'uoppppp';
+    // }
 
     function filter_title($title) {
         return 'Filtered ' . $title;

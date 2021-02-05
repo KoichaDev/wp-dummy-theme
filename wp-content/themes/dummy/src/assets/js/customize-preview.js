@@ -8,6 +8,16 @@ wp.customize('blogname', (value) => {
   });
 });
 
+wp.customize('_theme_name_display_author_info', (value) => {
+  value.bind((to) => {
+    if (to) {
+      $('.c-post-author').show();
+    } else {
+      $('.c-post-author').hide();
+    }
+  });
+});
+
 // transport preview for the color accent of WP Customize
 wp.customize('_theme_name_accent_colour', (value) => {
   value.bind((to) => {

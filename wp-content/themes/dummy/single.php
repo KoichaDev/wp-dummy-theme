@@ -19,7 +19,10 @@
                         while(have_posts()) {
                             the_post();
                             get_template_part('template-parts/post/content');
-                            get_template_part('template-parts/single/author');
+
+                            if(get_theme_mod('_theme_name_display_author_info', true)) {
+                                get_template_part('template-parts/single/author');
+                            }
                         }
                     } else {
                         // 'none' is getting the content-none.php file

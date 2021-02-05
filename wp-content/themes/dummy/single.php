@@ -23,6 +23,8 @@
                             if(get_theme_mod('_theme_name_display_author_info', true)) {
                                 get_template_part('template-parts/single/author');
                             }
+
+                            get_template_part('template-parts/single/navigation');
                         }
                     } else {
                         // 'none' is getting the content-none.php file

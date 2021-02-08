@@ -6,6 +6,14 @@
         wp_add_inline_style('_theme_name-stylesheet', $inline_styles);
 
         wp_enqueue_script('_theme_name-scripts', get_template_directory_uri() . '/dist/assets/js/bundle.js', ['jquery'], '1.0.0', true);
+
+        // 1. Determines whether the query is for an existing single post of any post type (post, attachment, page, custom post types). 
+        // 2. We use is_singular() because pages can also have comments, not only posts. If using is_singular() for page, it will return false
+        if(is_singular() && comments_open() && get_option( 'thread_comments')) {  // 'thread_comments make sure to load comments only if it needed
+
+        }
+        // WP will get the comment reply for JS
+        wp_enqueue_script( 'comment-reply' );
         
     }
 

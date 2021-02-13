@@ -79,7 +79,9 @@ wp-content/themes/dummy/dist/*
 # ignore all files and folders in plugins folder except website specific files
 wp-content/plugins/*
 wp-content/plugins/dummytheme-metaboxes/node_modules
+wp-content/plugins/dummytheme-shortcodes/node_modules
 !wp-content/plugins/dummytheme-metaboxes
+!wp-content/plugins/dummytheme-shortcodes
 
 # ignore log files and databases
 *.log

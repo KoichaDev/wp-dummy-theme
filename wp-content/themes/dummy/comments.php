@@ -20,14 +20,15 @@
         <ul class="c-comments__list">
             <?php wp_list_comments([
                 'avatar_size'       => 200,
-                'reply_text'        => 'hello'
+                'reply_text'        => 'hello',
+                'callback'          => '_theme_name_comment_callback'
             ]); ?>
         </ul>
         <?php the_comments_pagination(); ?>
     <?php endif; ?>
                 
     <?php if(! comments_open() && get_comments_number() ) : ?>
-        <p class="c-comments__closed"><?php esc_html_e('Comments are closed for this post', '_theme_name'); ?></p>
+        <p class="c-comments__closed"><?php esc_html_e('Comments are closed for this post', '_theme_nameg'); ?></p>
     <?php else : comment_form(); endif; ?>
 
 </div>

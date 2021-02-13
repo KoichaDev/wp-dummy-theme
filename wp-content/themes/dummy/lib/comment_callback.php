@@ -25,6 +25,7 @@ function _theme_name_comment_callback($comment, $args, $depth) {
                         ?>
                     </time>
                 </a>
+                <?php comment_text(); ?>
             </div>
         </article>
    <?php 

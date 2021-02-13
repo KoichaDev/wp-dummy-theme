@@ -3,8 +3,8 @@
 // $args is coming from the comments.php file of the function named wp_list_comments of list of different args from the array of the function
 function _theme_name_comment_callback($comment, $args, $depth) {
    ?>
-    <li <?php comment_class(['c-comment', $comment-> comment_parent ? 'c-comment--child' : '']); ?>>
-        <article id="comment-<?php comment_ID(); ?>" class="c-comment__body">
+    <li  id="comment-<?php comment_ID(); ?>" <?php comment_class(['c-comment', $comment-> comment_parent ? 'c-comment--child' : '']); ?>>
+        <article id="div-comment-<?php comment_ID(); ?>" class="c-comment__body">
             <?php echo get_avatar( $comment, 100, false, false, ['class' => 'c-comment__avatar'] ) ?>
             <?php edit_comment_link( 
                 esc_html__('Edit Comment', '_theme_name'),
@@ -25,7 +25,20 @@ function _theme_name_comment_callback($comment, $args, $depth) {
                         ?>
                     </time>
                 </a>
-                <?php comment_text(); ?>
+                <!-- 0 means the comment has not approved. Basically like boolean of true false. False is 0 and true is 1  -->
+                <?php if($comment -> comment_approved === '0') : ?>
+                    <p class="c-comment__awaiting-moderation"><?php esc_html_e('Your comment is awaiting moderation.', '_theme_name'); ?></p>
+                <?php endif; ?>
+                <?php 
+                    comment_text(); 
+                    comment_reply_link([
+                        'depth'     => $depth,
+                        'max_depth' => $args['max_depth'],
+                        'add_below' => 'div-comment',
+                        'before'    => '<div class="c-comment__reply-link">',
+                        'after'     => '</div>'
+                    ]);
+                ?>
             </div>
         </article>
    <?php 

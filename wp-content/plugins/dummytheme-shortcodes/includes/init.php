@@ -2,6 +2,7 @@
 
 function _themename__plugin_init() {
     include_once('shortcodes/button/button.php');
+    include_once('shortcodes/slider/slider.php');
 }
 
 // This action will be called when WP is initialized. 

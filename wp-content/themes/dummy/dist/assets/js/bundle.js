@@ -146,7 +146,7 @@ console.log('1234');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Khoi\Local Sites\dummy-theme\app\public\wp-content\themes\dummy\src\assets\js\bundle.js */"./src/assets/js/bundle.js");
+module.exports = __webpack_require__(/*! C:\Users\KhoiDev\Local Sites\dummy-theme\app\public\wp-content\themes\dummy\src\assets\js\bundle.js */"./src/assets/js/bundle.js");
 
 
 /***/ }),

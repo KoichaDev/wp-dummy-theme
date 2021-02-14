@@ -104,7 +104,7 @@ console.log('admin test file');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Khoi\Local Sites\dummy-theme\app\public\wp-content\themes\dummy\src\assets\js\admin.js */"./src/assets/js/admin.js");
+module.exports = __webpack_require__(/*! C:\Users\KhoiDev\Local Sites\dummy-theme\app\public\wp-content\themes\dummy\src\assets\js\admin.js */"./src/assets/js/admin.js");
 
 
 /***/ })

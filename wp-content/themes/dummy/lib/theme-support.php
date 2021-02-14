@@ -18,6 +18,11 @@
             'flex-height' => true,
             'flex-width'  => true
         ]);
+
+        // More info: https://wordpress.org/support/article/post-formats/#supported-formats
+        add_theme_support( 'post-formats', [
+            'aside', 'image', 'video', 'quote', 'link', 'gallery', 'audio'
+        ]);
     }
 
     // after_setup_theme action is to add features that are not supported by WP default

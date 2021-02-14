@@ -18,4 +18,4 @@
             ?>
         </div>
     <?php endif; ?>
-</footer>
+</footer>g
